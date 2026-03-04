@@ -1,0 +1,249 @@
+{
+  "id": "idea-04",
+  "name": "Tactical Service Planner",
+  "style_family": "dark-enterprise",
+  "best_for": [
+    "scheduling systems",
+    "service operations",
+    "B2B control panels"
+  ],
+  "keywords": [
+    "dark",
+    "calendar",
+    "dense",
+    "enterprise",
+    "task management"
+  ],
+  "meta": {
+    "idea_id": "idea-04",
+    "style_name": "Tactical Service Planner",
+    "inferred_layout_type": "multi-pane enterprise workspace",
+    "confidence_notes": "High confidence on tri-pane composition and accent semantics; medium confidence on exact panel spacing values."
+  },
+  "visual_dna": {
+    "mood": [
+      "operational",
+      "precise",
+      "professional",
+      "high-control"
+    ],
+    "density": "high",
+    "contrast_strategy": "layered dark panels with colored status accents for schedule urgency",
+    "visual_hierarchy": "schedule board first, profile/context pane second, notes/actions third"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#1A1E28",
+      "surface": "#1F2431",
+      "surface_alt": "#252B3A",
+      "surface_elevated": "#2A3042",
+      "border": "#373F53",
+      "text_primary": "#E9EDF5",
+      "text_secondary": "#A3ADBF",
+      "text_tertiary": "#7E879A",
+      "accent_primary": "#2B8CFF",
+      "accent_secondary": "#FF5B5B",
+      "accent_tertiary": "#A56CFF",
+      "success": "#46C08D",
+      "warning": "#F4C350",
+      "danger": "#E96060",
+      "calendar_block": "#222838",
+      "calendar_block_striped": "#252C3D"
+    },
+    "typography": {
+      "font_family_sans": "Inter, ui-sans-serif, system-ui",
+      "font_family_display": "Inter, ui-sans-serif, system-ui",
+      "weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "scale": {
+        "xs": "11px",
+        "sm": "12px",
+        "md": "14px",
+        "lg": "16px",
+        "xl": "22px",
+        "display": "30px"
+      }
+    },
+    "spacing": {
+      "base_unit": 4,
+      "scale": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        40
+      ]
+    },
+    "radius": {
+      "sm": "6px",
+      "md": "10px",
+      "lg": "14px",
+      "xl": "18px",
+      "pill": "999px"
+    },
+    "shadow": {
+      "subtle": "0 6px 14px rgba(0,0,0,0.25)",
+      "medium": "0 14px 28px rgba(0,0,0,0.36)",
+      "floating": "0 28px 70px rgba(0,0,0,0.5)"
+    },
+    "motion": {
+      "fast": "120ms",
+      "normal": "200ms",
+      "slow": "320ms",
+      "easing_standard": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+      "interaction_principles": [
+        "state clarity over animation flair",
+        "calendar transitions should be stable",
+        "avoid moving key controls"
+      ]
+    }
+  },
+  "layout_system": {
+    "canvas": "full desktop workspace with left nav and two right panes",
+    "max_width": "1440px",
+    "grid_columns_desktop": 12,
+    "grid_columns_mobile": 4,
+    "gutters": {
+      "desktop": "16px",
+      "mobile": "12px"
+    },
+    "section_spacing": "16px"
+  },
+  "components": [
+    {
+      "name": "Primary navigation rail",
+      "variants": [
+        "icon+label grouped"
+      ],
+      "states": [
+        "default",
+        "active",
+        "hover"
+      ],
+      "notes": "Active state uses red edge indicator"
+    },
+    {
+      "name": "Profile detail pane",
+      "variants": [
+        "summary",
+        "expanded"
+      ],
+      "states": [
+        "default",
+        "editing"
+      ],
+      "notes": "Skill chips and certification docs"
+    },
+    {
+      "name": "Monthly schedule board",
+      "variants": [
+        "week",
+        "month",
+        "year"
+      ],
+      "states": [
+        "default",
+        "selected-day",
+        "busy",
+        "unavailable"
+      ],
+      "notes": "Grid cells with color-coded tasks and stripe patterns"
+    },
+    {
+      "name": "Notes composer",
+      "variants": [
+        "rich text",
+        "plain"
+      ],
+      "states": [
+        "default",
+        "focused",
+        "submitting"
+      ],
+      "notes": "Toolbar, save/cancel, linked activity feed"
+    }
+  ],
+  "interaction_patterns": {
+    "hover": "elevate cell/card subtly and brighten border",
+    "focus": "2px blue ring token",
+    "active": "filled emphasis for selected time block",
+    "disabled": "reduced saturation + pointer disabled",
+    "loading": "skeleton calendar cells + placeholder notes",
+    "empty": "blank-day prompt with add-assignment CTA",
+    "error": "inline pane-specific error with retry"
+  },
+  "responsive_rules": {
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1280px"
+    },
+    "behavior": [
+      "Below xl: profile pane becomes collapsible drawer",
+      "Below lg: calendar takes full width; notes move below",
+      "Below md: replace month grid with agenda list"
+    ]
+  },
+  "dark_mode_rules": {
+    "default_mode": "dark-first",
+    "light_mode_mapping": "optional; if enabled keep schedule statuses semantically identical",
+    "contrast_target": "AA minimum with elevated emphasis on small calendar text"
+  },
+  "accessibility": {
+    "color_contrast": "AA minimum; priority controls should exceed AA where possible",
+    "keyboard": "calendar cell navigation via keyboard required",
+    "focus_visibility": "highly visible rings in dense areas",
+    "aria_guidance": "use grid semantics for calendar and announce selected day/task count"
+  },
+  "implementation_rules": [
+    "Treat calendar as reusable data-driven component",
+    "Keep state/status color mapping centralized",
+    "No hardcoded pixel spacing in calendar cell internals",
+    "Separate pane state management from rendering"
+  ],
+  "anti_patterns": [
+    "Over-animated calendar transitions",
+    "Using color alone for status communication",
+    "Tiny tap targets in dense controls",
+    "Inconsistent chip/status styling between panes"
+  ],
+  "project_adapter_template": {
+    "idea_id": "idea-04",
+    "project_name": "",
+    "project_type": "operations-dashboard",
+    "route": "",
+    "primary_goal": "",
+    "target_users": [],
+    "data_density": "high",
+    "tone": [
+      "professional",
+      "precise",
+      "operational"
+    ],
+    "constraints": {
+      "mobile_first": true,
+      "a11y_level": "WCAG_AA",
+      "supports_dark_mode": true
+    },
+    "mapping": {
+      "navigation": "left_ops_nav",
+      "context_pane": "profile_and_credentials",
+      "hero_widget": "schedule_calendar",
+      "collaboration_widget": "notes_and_activity"
+    },
+    "do_not_change": [
+      "tri-pane operational hierarchy",
+      "semantic accent mapping for statuses",
+      "dense but disciplined spacing system"
+    ]
+  }
+}

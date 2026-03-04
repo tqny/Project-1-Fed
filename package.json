@@ -1,0 +1,32 @@
+{
+  "name": "federal-opportunity-intelligence",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "node --import tsx --test tests/**/*.test.ts",
+    "prisma:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "outfit": "node scripts/outfit-manager.mjs"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.2",
+    "next": "^15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "^9.21.0",
+    "eslint-config-next": "^15.2.0",
+    "prisma": "^6.19.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

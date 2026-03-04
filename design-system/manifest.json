@@ -1,0 +1,62 @@
+{
+  "version": "1.1.0",
+  "generated_at": "2026-03-04T05:26:32.953Z",
+  "source_index": "design-index.json",
+  "buckets": [
+    {
+      "id": "idea-01",
+      "name": "Nocturne Minimal Analytics",
+      "style_family": "dark-minimal",
+      "files": {
+        "bucket_json": "buckets/idea-01/bucket.json",
+        "tokens_css": "buckets/idea-01/tokens.css",
+        "agent_context": "buckets/idea-01/agent-context.md",
+        "readme": "buckets/idea-01/README.md"
+      }
+    },
+    {
+      "id": "idea-02",
+      "name": "Lime Fintech Operations",
+      "style_family": "dark-data-dense",
+      "files": {
+        "bucket_json": "buckets/idea-02/bucket.json",
+        "tokens_css": "buckets/idea-02/tokens.css",
+        "agent_context": "buckets/idea-02/agent-context.md",
+        "readme": "buckets/idea-02/README.md"
+      }
+    },
+    {
+      "id": "idea-03",
+      "name": "Soft Pastel Commerce",
+      "style_family": "light-soft",
+      "files": {
+        "bucket_json": "buckets/idea-03/bucket.json",
+        "tokens_css": "buckets/idea-03/tokens.css",
+        "agent_context": "buckets/idea-03/agent-context.md",
+        "readme": "buckets/idea-03/README.md"
+      }
+    },
+    {
+      "id": "idea-04",
+      "name": "Tactical Service Planner",
+      "style_family": "dark-enterprise",
+      "files": {
+        "bucket_json": "buckets/idea-04/bucket.json",
+        "tokens_css": "buckets/idea-04/tokens.css",
+        "agent_context": "buckets/idea-04/agent-context.md",
+        "readme": "buckets/idea-04/README.md"
+      }
+    },
+    {
+      "id": "idea-05",
+      "name": "Expedition Editorial Travel",
+      "style_family": "marketing-editorial",
+      "files": {
+        "bucket_json": "buckets/idea-05/bucket.json",
+        "tokens_css": "buckets/idea-05/tokens.css",
+        "agent_context": "buckets/idea-05/agent-context.md",
+        "readme": "buckets/idea-05/README.md"
+      }
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "id": "idea-01",
+  "name": "Nocturne Minimal Analytics",
+  "style_family": "dark-minimal",
+  "best_for": [
+    "single-focus dashboard",
+    "report cards",
+    "executive snapshots"
+  ],
+  "keywords": [
+    "dark",
+    "violet accent",
+    "minimal",
+    "calm",
+    "premium"
+  ],
+  "meta": {
+    "idea_id": "idea-01",
+    "style_name": "Nocturne Minimal Analytics",
+    "inferred_layout_type": "single-card dashboard",
+    "confidence_notes": "High confidence on palette, spacing rhythm, and chart treatment; medium confidence on exact font family."
+  },
+  "visual_dna": {
+    "mood": [
+      "quiet",
+      "premium",
+      "focused",
+      "low-noise"
+    ],
+    "density": "low-to-medium",
+    "contrast_strategy": "very dark surfaces + selective high-contrast text + one neon/violet accent",
+    "visual_hierarchy": "chart first, report rows second, CTA third"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#363942",
+      "surface": "#0E1118",
+      "surface_alt": "#121621",
+      "surface_elevated": "#171C27",
+      "border": "#272C39",
+      "text_primary": "#F4F5F8",
+      "text_secondary": "#9BA1B2",
+      "text_tertiary": "#747B8E",
+      "accent_primary": "#6A56FF",
+      "accent_secondary": "#8A7BFF",
+      "accent_soft": "#B5ACFF",
+      "success": "#3FC89A",
+      "warning": "#F3B44D",
+      "danger": "#EE6B6B",
+      "chart_grid": "#202534"
+    },
+    "typography": {
+      "font_family_sans": "Inter, ui-sans-serif, system-ui",
+      "font_family_display": "Inter, ui-sans-serif, system-ui",
+      "weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600
+      },
+      "scale": {
+        "xs": "11px",
+        "sm": "12px",
+        "md": "14px",
+        "lg": "16px",
+        "xl": "20px",
+        "display": "28px"
+      }
+    },
+    "spacing": {
+      "base_unit": 4,
+      "scale": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40
+      ]
+    },
+    "radius": {
+      "sm": "8px",
+      "md": "12px",
+      "lg": "16px",
+      "xl": "20px",
+      "pill": "999px"
+    },
+    "shadow": {
+      "subtle": "0 8px 24px rgba(0,0,0,0.25)",
+      "medium": "0 14px 30px rgba(0,0,0,0.35)",
+      "floating": "0 30px 80px rgba(0,0,0,0.45)"
+    },
+    "motion": {
+      "fast": "120ms",
+      "normal": "200ms",
+      "slow": "320ms",
+      "easing_standard": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+      "interaction_principles": [
+        "fade and tint",
+        "no large movement",
+        "chart hover tooltip appears with short fade"
+      ]
+    }
+  },
+  "layout_system": {
+    "canvas": "centered floating panel on muted backdrop",
+    "max_width": "640px",
+    "grid_columns_desktop": 12,
+    "grid_columns_mobile": 4,
+    "gutters": {
+      "desktop": "24px",
+      "mobile": "16px"
+    },
+    "section_spacing": "24px"
+  },
+  "components": [
+    {
+      "name": "Top breadcrumb bar",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default"
+      ],
+      "notes": "Tiny icon + breadcrumb with subtle muted text"
+    },
+    {
+      "name": "Line chart panel",
+      "variants": [
+        "year compare",
+        "single series"
+      ],
+      "states": [
+        "default",
+        "hover-point",
+        "loading-empty"
+      ],
+      "notes": "Thin violet stroke, low-contrast grid, floating tooltip"
+    },
+    {
+      "name": "Report rows",
+      "variants": [
+        "selected",
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "selected"
+      ],
+      "notes": "Rounded rows with tiny category dots and avatar stack"
+    },
+    {
+      "name": "Primary CTA",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "active",
+        "disabled"
+      ],
+      "notes": "Small bright violet button anchored bottom-right"
+    }
+  ],
+  "interaction_patterns": {
+    "hover": "increase border contrast + slight surface lift",
+    "focus": "2px accent ring with 40% opacity",
+    "active": "reduce brightness by 8%",
+    "disabled": "40% opacity + remove shadow",
+    "loading": "skeleton on chart + row placeholders",
+    "empty": "muted illustration + one recovery action",
+    "error": "inline alert strip using danger token"
+  },
+  "responsive_rules": {
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px"
+    },
+    "behavior": [
+      "Below md: stack controls vertically and reduce chart label density",
+      "Below sm: convert report rows to compact cards",
+      "Keep primary CTA always visible in footer area"
+    ]
+  },
+  "dark_mode_rules": {
+    "default_mode": "dark-first",
+    "light_mode_mapping": "invert neutrals while preserving violet accent saturation",
+    "contrast_target": "WCAG AA for body text and control text"
+  },
+  "accessibility": {
+    "color_contrast": "AA minimum (4.5:1 text, 3:1 large text)",
+    "keyboard": "all controls reachable; chart tooltips mirrored in accessible summary",
+    "focus_visibility": "never remove outlines without tokenized replacement",
+    "aria_guidance": "use role='table' for report list only when semantics match"
+  },
+  "implementation_rules": [
+    "No hardcoded design literals in feature components",
+    "Only consume colors from theme tokens",
+    "Encapsulate chart styles in reusable chart theme object",
+    "Use shared button/input/badge primitives for consistency"
+  ],
+  "anti_patterns": [
+    "Overusing gradients across all surfaces",
+    "Multiple saturated accents competing with violet",
+    "Heavy drop shadows that break low-noise mood",
+    "Dense copy blocks in compact rows"
+  ],
+  "project_adapter_template": {
+    "idea_id": "idea-01",
+    "project_name": "",
+    "project_type": "dashboard",
+    "route": "",
+    "primary_goal": "",
+    "target_users": [],
+    "data_density": "medium",
+    "tone": [
+      "premium",
+      "calm",
+      "focused"
+    ],
+    "constraints": {
+      "mobile_first": true,
+      "a11y_level": "WCAG_AA",
+      "supports_dark_mode": true
+    },
+    "mapping": {
+      "hero_widget": "line_chart_card",
+      "secondary_widget": "report_rows",
+      "primary_action": "single_footer_cta"
+    },
+    "do_not_change": [
+      "single-accent strategy",
+      "low-noise surfaces",
+      "compact typography scale"
+    ]
+  }
+}

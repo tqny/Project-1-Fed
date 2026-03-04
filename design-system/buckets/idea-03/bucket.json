@@ -1,0 +1,251 @@
+{
+  "id": "idea-03",
+  "name": "Soft Pastel Commerce",
+  "style_family": "light-soft",
+  "best_for": [
+    "orders dashboards",
+    "customer portals",
+    "friendly admin tools"
+  ],
+  "keywords": [
+    "light",
+    "pastel",
+    "purple nav",
+    "clean",
+    "approachable"
+  ],
+  "meta": {
+    "idea_id": "idea-03",
+    "style_name": "Soft Pastel Commerce",
+    "inferred_layout_type": "left sidebar + light data workspace",
+    "confidence_notes": "High confidence on structure and palette family; medium confidence on exact icon stroke weights."
+  },
+  "visual_dna": {
+    "mood": [
+      "friendly",
+      "clean",
+      "approachable",
+      "organized"
+    ],
+    "density": "medium",
+    "contrast_strategy": "light surfaces with soft chroma blocks + crisp dark text",
+    "visual_hierarchy": "page title + summary cards, then order table"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#EEF2F8",
+      "surface": "#FFFFFF",
+      "surface_alt": "#F7F9FD",
+      "surface_elevated": "#FFFFFF",
+      "border": "#E4EAF4",
+      "text_primary": "#1F2533",
+      "text_secondary": "#6F7688",
+      "text_tertiary": "#98A0B3",
+      "accent_primary": "#6D53E7",
+      "accent_secondary": "#8A77F0",
+      "pastel_blue": "#EAF3FF",
+      "pastel_lavender": "#F1EDFF",
+      "pastel_peach": "#FDEEE8",
+      "success": "#36B37E",
+      "warning": "#F2B544",
+      "danger": "#E46E6E"
+    },
+    "typography": {
+      "font_family_sans": "Inter, ui-sans-serif, system-ui",
+      "font_family_display": "Inter, ui-sans-serif, system-ui",
+      "weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "scale": {
+        "xs": "11px",
+        "sm": "12px",
+        "md": "14px",
+        "lg": "16px",
+        "xl": "24px",
+        "display": "36px"
+      }
+    },
+    "spacing": {
+      "base_unit": 4,
+      "scale": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48
+      ]
+    },
+    "radius": {
+      "sm": "8px",
+      "md": "12px",
+      "lg": "16px",
+      "xl": "20px",
+      "pill": "999px"
+    },
+    "shadow": {
+      "subtle": "0 2px 8px rgba(29, 41, 57, 0.04)",
+      "medium": "0 8px 24px rgba(29, 41, 57, 0.08)",
+      "floating": "0 18px 40px rgba(29, 41, 57, 0.12)"
+    },
+    "motion": {
+      "fast": "100ms",
+      "normal": "180ms",
+      "slow": "280ms",
+      "easing_standard": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+      "interaction_principles": [
+        "soft transitions",
+        "opacity and tint changes",
+        "avoid heavy transforms"
+      ]
+    }
+  },
+  "layout_system": {
+    "canvas": "centered white app shell on pastel background",
+    "max_width": "1280px",
+    "grid_columns_desktop": 12,
+    "grid_columns_mobile": 4,
+    "gutters": {
+      "desktop": "24px",
+      "mobile": "16px"
+    },
+    "section_spacing": "20px"
+  },
+  "components": [
+    {
+      "name": "Sidebar navigation",
+      "variants": [
+        "icon + text"
+      ],
+      "states": [
+        "default",
+        "active",
+        "hover"
+      ],
+      "notes": "Active row uses filled purple background"
+    },
+    {
+      "name": "Summary cards",
+      "variants": [
+        "blue",
+        "lavender",
+        "peach"
+      ],
+      "states": [
+        "default",
+        "loading"
+      ],
+      "notes": "Pastel backgrounds with concise metrics"
+    },
+    {
+      "name": "Segmented order tabs",
+      "variants": [
+        "all",
+        "pending",
+        "delivered",
+        "booked",
+        "cancelled"
+      ],
+      "states": [
+        "default",
+        "active",
+        "hover"
+      ],
+      "notes": "Low-friction tab switching"
+    },
+    {
+      "name": "Orders table",
+      "variants": [
+        "full",
+        "compact"
+      ],
+      "states": [
+        "default",
+        "sorted",
+        "empty",
+        "loading"
+      ],
+      "notes": "High readability with status indicators"
+    }
+  ],
+  "interaction_patterns": {
+    "hover": "gentle background tint + subtle border shift",
+    "focus": "2px accent ring",
+    "active": "filled accent state for nav/tabs",
+    "disabled": "muted text and low-contrast border",
+    "loading": "pastel skeleton shimmer",
+    "empty": "friendly zero state with actionable hint",
+    "error": "inline soft-red feedback chip"
+  },
+  "responsive_rules": {
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px"
+    },
+    "behavior": [
+      "Below lg: reduce side panel width and simplify stats row",
+      "Below md: sidebar becomes top drawer",
+      "Below sm: table becomes stacked row cards"
+    ]
+  },
+  "dark_mode_rules": {
+    "default_mode": "light-first",
+    "dark_mode_mapping": "swap neutrals to deep slate while keeping accent and pastel intent via muted dark equivalents",
+    "contrast_target": "AA minimum"
+  },
+  "accessibility": {
+    "color_contrast": "AA minimum for text and controls",
+    "keyboard": "full keyboard operation for nav, tabs, and table",
+    "focus_visibility": "consistent ring token",
+    "aria_guidance": "tablist semantics required for order filters"
+  },
+  "implementation_rules": [
+    "Tokenize pastel surfaces as semantic card variants",
+    "No hardcoded color literals in cards/table rows",
+    "Use reusable status badge component",
+    "Keep table column config typed and externalized"
+  ],
+  "anti_patterns": [
+    "Over-saturating pastels",
+    "Dark heavy borders in light mode",
+    "Overuse of drop shadows",
+    "Tight text spacing that hurts readability"
+  ],
+  "project_adapter_template": {
+    "idea_id": "idea-03",
+    "project_name": "",
+    "project_type": "dashboard",
+    "route": "",
+    "primary_goal": "",
+    "target_users": [],
+    "data_density": "medium",
+    "tone": [
+      "friendly",
+      "clean",
+      "approachable"
+    ],
+    "constraints": {
+      "mobile_first": true,
+      "a11y_level": "WCAG_AA",
+      "supports_dark_mode": true
+    },
+    "mapping": {
+      "navigation": "soft_sidebar",
+      "hero_widget": "summary_cards",
+      "workflow_switch": "status_tabs",
+      "operations_surface": "orders_table"
+    },
+    "do_not_change": [
+      "purple-only strong accent",
+      "pastel low-saturation card strategy",
+      "clean whitespace-driven layout"
+    ]
+  }
+}

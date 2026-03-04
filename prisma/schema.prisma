@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Opportunity {
+  id                 String   @id @default(cuid())
+  source             String   @default("sam")
+  sourceId           String   @unique
+  title              String
+  agency             String
+  office             String?
+  postedDate         DateTime
+  dueDate            DateTime?
+  naics              String
+  setAside           String?
+  placeOfPerformance String?
+  waRelevant         Boolean  @default(false)
+  url                String
+  description        String?
+  enrichment         String?
+  scoreTotal         Float    @default(0)
+  scoreBreakdown     String   @default("{}")
+  brief              String?
+  status             String   @default("new")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@index([agency])
+  @@index([scoreTotal])
+}
+
+model RefreshRun {
+  id            String   @id @default(cuid())
+  status        String   @default("running")
+  countFetched  Int      @default(0)
+  countUpserted Int      @default(0)
+  countEnriched Int      @default(0)
+  countScored   Int      @default(0)
+  countBriefed  Int      @default(0)
+  errors        String   @default("[]")
+  startedAt     DateTime @default(now())
+  finishedAt    DateTime?
+
+  @@index([startedAt])
+}

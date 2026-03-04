@@ -1,0 +1,264 @@
+{
+  "id": "idea-05",
+  "name": "Expedition Editorial Travel",
+  "style_family": "marketing-editorial",
+  "best_for": [
+    "travel landing pages",
+    "consumer marketing",
+    "brand-forward discovery apps"
+  ],
+  "keywords": [
+    "editorial",
+    "mosaic grid",
+    "warm accents",
+    "hero storytelling",
+    "conversion"
+  ],
+  "meta": {
+    "idea_id": "idea-05",
+    "style_name": "Expedition Editorial Travel",
+    "inferred_layout_type": "marketing hero + mosaic feature cards",
+    "confidence_notes": "High confidence on compositional style and accent palette; medium confidence on exact typeface identity."
+  },
+  "visual_dna": {
+    "mood": [
+      "adventurous",
+      "bold",
+      "editorial",
+      "premium"
+    ],
+    "density": "medium",
+    "contrast_strategy": "near-black canvas + bright typography + colorful card islands",
+    "visual_hierarchy": "left hero headline, right content mosaic, floating side actions"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#060708",
+      "surface": "#0E1013",
+      "surface_alt": "#14171C",
+      "surface_elevated": "#1B1F26",
+      "border": "#2A2F38",
+      "text_primary": "#F5F6F3",
+      "text_secondary": "#B8BCC5",
+      "text_tertiary": "#8B909D",
+      "accent_primary": "#F2BD4B",
+      "accent_secondary": "#1D8074",
+      "accent_tertiary": "#F58A3A",
+      "sand_card": "#EDE2D6",
+      "yellow_card": "#F1BE4D",
+      "teal_card": "#1F8075",
+      "lavender_card": "#B2A7AF",
+      "offwhite_card": "#F2F1EB",
+      "success": "#46C28A",
+      "warning": "#E9B04B",
+      "danger": "#E56F64"
+    },
+    "typography": {
+      "font_family_sans": "Inter, ui-sans-serif, system-ui",
+      "font_family_display": "Sora, Inter, ui-sans-serif, system-ui",
+      "weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "black": 800
+      },
+      "scale": {
+        "xs": "11px",
+        "sm": "12px",
+        "md": "14px",
+        "lg": "18px",
+        "xl": "34px",
+        "display": "72px"
+      }
+    },
+    "spacing": {
+      "base_unit": 4,
+      "scale": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        48,
+        64
+      ]
+    },
+    "radius": {
+      "sm": "10px",
+      "md": "14px",
+      "lg": "20px",
+      "xl": "28px",
+      "pill": "999px"
+    },
+    "shadow": {
+      "subtle": "0 6px 14px rgba(0,0,0,0.2)",
+      "medium": "0 14px 32px rgba(0,0,0,0.35)",
+      "floating": "0 30px 80px rgba(0,0,0,0.55)"
+    },
+    "motion": {
+      "fast": "120ms",
+      "normal": "240ms",
+      "slow": "400ms",
+      "easing_standard": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "interaction_principles": [
+        "hero-level reveals",
+        "card hover depth",
+        "limited but expressive movement"
+      ]
+    }
+  },
+  "layout_system": {
+    "canvas": "split hero with right-side modular card board",
+    "max_width": "1280px",
+    "grid_columns_desktop": 12,
+    "grid_columns_mobile": 4,
+    "gutters": {
+      "desktop": "24px",
+      "mobile": "16px"
+    },
+    "section_spacing": "24px"
+  },
+  "components": [
+    {
+      "name": "Top nav",
+      "variants": [
+        "brand + center links + utility action"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "active"
+      ],
+      "notes": "Minimal nav chrome; text-first links"
+    },
+    {
+      "name": "Hero copy block",
+      "variants": [
+        "large headline"
+      ],
+      "states": [
+        "default"
+      ],
+      "notes": "Big display text with short supporting copy"
+    },
+    {
+      "name": "Feature mosaic cards",
+      "variants": [
+        "image card",
+        "stat card",
+        "reviews card",
+        "category card"
+      ],
+      "states": [
+        "default",
+        "hover"
+      ],
+      "notes": "Mixed card sizes with curated color islands"
+    },
+    {
+      "name": "Floating side actions",
+      "variants": [
+        "feedback",
+        "saved",
+        "map"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "active"
+      ],
+      "notes": "Vertical quick-actions aligned to content board"
+    },
+    {
+      "name": "Primary CTA",
+      "variants": [
+        "pill"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "active"
+      ],
+      "notes": "Black pill over light card surface"
+    }
+  ],
+  "interaction_patterns": {
+    "hover": "card lift + subtle scale + shadow change",
+    "focus": "visible contrast ring that works on dark and light cards",
+    "active": "slight press transform",
+    "disabled": "reduce saturation and opacity",
+    "loading": "hero skeleton and card placeholders",
+    "empty": "destination discovery zero state with search CTA",
+    "error": "inline non-blocking alert with retry"
+  },
+  "responsive_rules": {
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1280px"
+    },
+    "behavior": [
+      "Below lg: collapse split layout to single column",
+      "Below md: simplify card mosaic to stacked cards with preserved order",
+      "On mobile: convert floating side actions to bottom action rail"
+    ]
+  },
+  "dark_mode_rules": {
+    "default_mode": "dark-first",
+    "light_mode_mapping": "optional; preserve strong editorial typography and card color identity",
+    "contrast_target": "AA minimum for body text; hero heading should exceed AA"
+  },
+  "accessibility": {
+    "color_contrast": "AA minimum; check text on colored cards individually",
+    "keyboard": "all quick-actions and cards keyboard reachable",
+    "focus_visibility": "visible ring on dark and light backgrounds",
+    "aria_guidance": "landmarks for nav/hero/main/aside actions"
+  },
+  "implementation_rules": [
+    "Tokenize every card color variant",
+    "Do not hardcode display typography values in component bodies",
+    "Keep mosaic layout rules centralized for responsive behavior",
+    "Use reusable card primitives with variant props"
+  ],
+  "anti_patterns": [
+    "Using a flat monochrome look",
+    "Overcrowding hero with too much copy",
+    "Replacing editorial scale with generic dashboard type scale",
+    "Removing contrast on CTA over light cards"
+  ],
+  "project_adapter_template": {
+    "idea_id": "idea-05",
+    "project_name": "",
+    "project_type": "marketing-site",
+    "route": "",
+    "primary_goal": "",
+    "target_users": [],
+    "data_density": "medium",
+    "tone": [
+      "bold",
+      "exploratory",
+      "premium"
+    ],
+    "constraints": {
+      "mobile_first": true,
+      "a11y_level": "WCAG_AA",
+      "supports_dark_mode": true
+    },
+    "mapping": {
+      "navigation": "minimal_top_nav",
+      "hero": "left_story_block",
+      "content_system": "mosaic_card_variants",
+      "actions": "floating_quick_actions"
+    },
+    "do_not_change": [
+      "editorial display hierarchy",
+      "intentional asymmetry in layout",
+      "tokenized colorful card islands over dark canvas"
+    ]
+  }
+}

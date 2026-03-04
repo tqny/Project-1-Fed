@@ -1,0 +1,263 @@
+{
+  "id": "idea-02",
+  "name": "Lime Fintech Operations",
+  "style_family": "dark-data-dense",
+  "best_for": [
+    "fintech dashboards",
+    "ops consoles",
+    "transaction-heavy UIs"
+  ],
+  "keywords": [
+    "dark",
+    "lime accent",
+    "high density",
+    "tables",
+    "metrics"
+  ],
+  "meta": {
+    "idea_id": "idea-02",
+    "style_name": "Lime Fintech Operations",
+    "inferred_layout_type": "sidebar + dense dashboard grid",
+    "confidence_notes": "High confidence on module composition and accent strategy; medium confidence on exact chart scale labels."
+  },
+  "visual_dna": {
+    "mood": [
+      "technical",
+      "efficient",
+      "high-control",
+      "confident"
+    ],
+    "density": "high",
+    "contrast_strategy": "dark neutral scaffold + luminous lime highlights for key performance cues",
+    "visual_hierarchy": "kpi cards > chart/table > auxiliary controls"
+  },
+  "tokens": {
+    "color": {
+      "bg": "#12151C",
+      "surface": "#171B24",
+      "surface_alt": "#1C212D",
+      "surface_elevated": "#232938",
+      "border": "#2E3444",
+      "text_primary": "#F3F5FA",
+      "text_secondary": "#A0A7B9",
+      "text_tertiary": "#798096",
+      "accent_primary": "#D7FF2F",
+      "accent_secondary": "#9DC531",
+      "accent_blue": "#4D86FF",
+      "success": "#4CD39A",
+      "warning": "#F2C65A",
+      "danger": "#F26D6D",
+      "chart_grid": "#2A3040"
+    },
+    "typography": {
+      "font_family_sans": "Inter, ui-sans-serif, system-ui",
+      "font_family_display": "Inter, ui-sans-serif, system-ui",
+      "weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "scale": {
+        "xs": "11px",
+        "sm": "12px",
+        "md": "14px",
+        "lg": "16px",
+        "xl": "22px",
+        "display": "32px"
+      }
+    },
+    "spacing": {
+      "base_unit": 4,
+      "scale": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        40
+      ]
+    },
+    "radius": {
+      "sm": "6px",
+      "md": "10px",
+      "lg": "14px",
+      "xl": "18px",
+      "pill": "999px"
+    },
+    "shadow": {
+      "subtle": "0 4px 12px rgba(0,0,0,0.2)",
+      "medium": "0 10px 24px rgba(0,0,0,0.32)",
+      "floating": "0 24px 60px rgba(0,0,0,0.45)"
+    },
+    "motion": {
+      "fast": "120ms",
+      "normal": "180ms",
+      "slow": "260ms",
+      "easing_standard": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+      "interaction_principles": [
+        "quick state transitions",
+        "minimal bounce",
+        "data updates should not shift layout"
+      ]
+    }
+  },
+  "layout_system": {
+    "canvas": "full-width desktop app shell",
+    "max_width": "1280px",
+    "grid_columns_desktop": 12,
+    "grid_columns_mobile": 4,
+    "gutters": {
+      "desktop": "20px",
+      "mobile": "12px"
+    },
+    "section_spacing": "16px"
+  },
+  "components": [
+    {
+      "name": "Left nav rail",
+      "variants": [
+        "grouped sections"
+      ],
+      "states": [
+        "default",
+        "active",
+        "hover",
+        "collapsed"
+      ],
+      "notes": "Active row uses subtle fill; icon-first alignment"
+    },
+    {
+      "name": "KPI cards",
+      "variants": [
+        "metric",
+        "metric-with-delta"
+      ],
+      "states": [
+        "default",
+        "loading"
+      ],
+      "notes": "Compact headline metric and comparison footer"
+    },
+    {
+      "name": "Spending limits card",
+      "variants": [
+        "segmented progress"
+      ],
+      "states": [
+        "default",
+        "hover details"
+      ],
+      "notes": "Lime bars and category legends"
+    },
+    {
+      "name": "Bar chart panel",
+      "variants": [
+        "line",
+        "bar"
+      ],
+      "states": [
+        "default",
+        "selected-period",
+        "loading",
+        "empty"
+      ],
+      "notes": "Only key bar gets accent_primary to preserve focus"
+    },
+    {
+      "name": "Transactions table",
+      "variants": [
+        "dense",
+        "compact"
+      ],
+      "states": [
+        "default",
+        "sorted",
+        "selected-row",
+        "empty"
+      ],
+      "notes": "Strong row separation and status chips"
+    }
+  ],
+  "interaction_patterns": {
+    "hover": "increase row/card elevation slightly",
+    "focus": "2px accent ring (lime at 50% alpha)",
+    "active": "darken surface and increase border contrast",
+    "disabled": "desaturate + reduce opacity to 45%",
+    "loading": "skeleton rows and placeholder chart bars",
+    "empty": "show zero state with contextual action",
+    "error": "inline top banner + field-level messaging"
+  },
+  "responsive_rules": {
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1280px"
+    },
+    "behavior": [
+      "Below lg: sidebar collapses to icon rail/drawer",
+      "Below md: KPI cards become 1-column stack",
+      "Table shifts to card-list mode below sm"
+    ]
+  },
+  "dark_mode_rules": {
+    "default_mode": "dark-first",
+    "light_mode_mapping": "retain lime accent but lower saturation for readability",
+    "contrast_target": "AA minimum across charts, labels, controls"
+  },
+  "accessibility": {
+    "color_contrast": "AA minimum",
+    "keyboard": "full keyboard support for sidebar, filters, table actions",
+    "focus_visibility": "persistent visible rings",
+    "aria_guidance": "table semantics with sortable header aria attributes"
+  },
+  "implementation_rules": [
+    "Centralize color and chart tokens",
+    "No hardcoded spacing/radius literals in view files",
+    "Use reusable KPI, chart panel, and table primitives",
+    "Separate data config from presentational components"
+  ],
+  "anti_patterns": [
+    "Lime applied to large backgrounds",
+    "Overly thick borders",
+    "Animated charts causing layout jump",
+    "Mixing too many accent colors"
+  ],
+  "project_adapter_template": {
+    "idea_id": "idea-02",
+    "project_name": "",
+    "project_type": "dashboard",
+    "route": "",
+    "primary_goal": "",
+    "target_users": [],
+    "data_density": "high",
+    "tone": [
+      "efficient",
+      "technical",
+      "serious"
+    ],
+    "constraints": {
+      "mobile_first": true,
+      "a11y_level": "WCAG_AA",
+      "supports_dark_mode": true
+    },
+    "mapping": {
+      "navigation": "left_nav_rail",
+      "hero_widget": "kpi_strip",
+      "analysis_widgets": [
+        "spending_limits",
+        "primary_chart"
+      ],
+      "operations_surface": "transaction_table"
+    },
+    "do_not_change": [
+      "accent restraint (lime only for emphasis)",
+      "dense modular card grid",
+      "clear metric-first hierarchy"
+    ]
+  }
+}
