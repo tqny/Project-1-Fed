@@ -48,3 +48,52 @@ model RefreshRun {
 
   @@index([startedAt])
 }
+
+model Lead {
+  id                   String   @id @default(cuid())
+  orgName              String
+  agencyName           String
+  segment              String
+  website              String?
+  phone                String?
+  headcount            Int
+  annualBudgetM        Float
+  relatedSpendM        Float
+  governanceRoleTitle  String?
+  governanceRolePresent Boolean @default(false)
+  procurementReadiness Int
+  complianceUrgency    Int
+  regulatoryComplexity Int
+  cyberPressure        Int
+  icpScore             Float    @default(0)
+  icpGrade             String   @default("D")
+  fitBand              String   @default("Outside")
+  considerable         Boolean  @default(false)
+  status               String   @default("generated")
+  priorityRank         Int?
+  rationale            String   @default("{}")
+  fieldProvenance      String   @default("{}")
+  generatedAt          DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([agencyName])
+  @@index([icpScore])
+  @@index([icpGrade])
+  @@index([fitBand])
+  @@index([considerable])
+}
+
+model LeadRun {
+  id             String   @id @default(cuid())
+  runType        String
+  status         String   @default("running")
+  requestedCount Int?
+  generatedCount Int      @default(0)
+  sortedCount    Int      @default(0)
+  summary        String   @default("{}")
+  errors         String   @default("[]")
+  startedAt      DateTime @default(now())
+  finishedAt     DateTime?
+
+  @@index([runType, startedAt])
+}

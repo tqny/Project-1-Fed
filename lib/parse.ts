@@ -1,5 +1,17 @@
 import type { OpportunityBrief, ScoreBreakdown } from "@/packages/core/types";
 
+export type LeadRationale = {
+  reasons: string[];
+  componentScores: {
+    scaleAndBudget: number;
+    spendPropensity: number;
+    organizationalReadiness: number;
+    urgencyPressure: number;
+  };
+  thresholds?: unknown;
+  disclosure?: string;
+};
+
 export function parseNaics(input: string): string[] {
   try {
     const parsed = JSON.parse(input);
@@ -47,6 +59,32 @@ export function parseBrief(input: string | null): OpportunityBrief | null {
   try {
     const parsed = JSON.parse(input) as OpportunityBrief;
     if (parsed && typeof parsed === "object" && Array.isArray(parsed.discoveryQuestions)) {
+      return parsed;
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
+export function parseLeadRationale(input: string): LeadRationale | null {
+  try {
+    const parsed = JSON.parse(input) as LeadRationale;
+    if (parsed && Array.isArray(parsed.reasons) && parsed.componentScores) {
+      return parsed;
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
+export function parseStringMap(input: string): Record<string, string> | null {
+  try {
+    const parsed = JSON.parse(input) as Record<string, string>;
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
       return parsed;
     }
   } catch {

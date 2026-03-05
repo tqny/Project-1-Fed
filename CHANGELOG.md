@@ -29,6 +29,22 @@ All notable changes to this project will be documented in this file.
   - `switch to next one`
   - `switch to previous one`
   - `switch to idea-0X`
+- Synthetic lead simulation and ops data models:
+  - `Lead` and `LeadRun` in Prisma schema
+  - ICP profile config and public organization seed catalog
+  - deterministic generator/sorter pipeline with rationale/provenance outputs
+- Lead operations API routes:
+  - `POST /api/leads/generate`
+  - `POST /api/leads/sort`
+- New console shell and portfolio page hierarchy:
+  - `/opportunities` (visual dashboard overview)
+  - `/opportunities/policy`
+  - `/opportunities/problem`
+  - `/opportunities/architecture`
+  - `/opportunities/agent-workflow`
+  - `/opportunities/github-evidence`
+- Demo log: `docs/demos/2026-03-04-lead-console-hierarchy-and-synthetic-pipeline.md`
+- ADR: `docs/adr/0003-synthetic-lead-simulation-and-portfolio-console-ia.md`
 
 ### Changed
 - Expanded README into portfolio-grade product documentation:
@@ -48,6 +64,15 @@ All notable changes to this project will be documented in this file.
 - Refresh button now shows run-id summary and collapsible error details after each run
 - Root layout now applies active theme class from `design-system/active-bucket.json`
 - App styling migrated to bucket-token driven variables and utility classes
+- Opportunity detail page now renders lead-level decision trail:
+  - grade/fit/queue state
+  - component scoring rationale
+  - field provenance metadata
+- Overview page now prioritizes dashboard operations only:
+  - charts/KPIs, filters, ranked queue table, and handoff visibility
+- Styling resilience and polish updates:
+  - runtime fallback styling safeguards
+  - neutral black/white glossy background and glare treatment (no green tint)
 
 ### Security
 - Added explicit no-secrets posture:

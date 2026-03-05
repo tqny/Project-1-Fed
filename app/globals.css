@@ -1,26 +1,45 @@
 @import "../design-system/themes.css";
 
 :root {
-  --bg: var(--dh-color-bg);
-  --surface: var(--dh-color-surface);
-  --surface-alt: var(--dh-color-surface-alt);
-  --ink: var(--dh-color-text-primary);
-  --muted: var(--dh-color-text-secondary);
-  --line: var(--dh-color-border);
-  --accent: var(--dh-color-accent-primary);
-  --accent-soft: var(--dh-color-surface-elevated);
-  --radius-sm: var(--dh-radius-sm);
-  --radius-md: var(--dh-radius-md);
-  --radius-lg: var(--dh-radius-lg);
-  --space-0: var(--dh-space-0);
-  --space-1: var(--dh-space-1);
-  --space-2: var(--dh-space-2);
-  --space-3: var(--dh-space-3);
-  --space-4: var(--dh-space-4);
-  --space-5: var(--dh-space-5);
-  --shadow-subtle: var(--dh-shadow-subtle);
-  --font-sans: var(--dh-font-family-sans);
-  --font-display: var(--dh-font-family-display);
+  --bg: var(--dh-color-bg, #12151c);
+  --surface: var(--dh-color-surface, #171b24);
+  --surface-alt: var(--dh-color-surface-alt, #1c212d);
+  --ink: var(--dh-color-text-primary, #f3f5fa);
+  --muted: var(--dh-color-text-secondary, #a0a7b9);
+  --line: var(--dh-color-border, #2e3444);
+  --accent: var(--dh-color-accent-primary, #d7ff2f);
+  --accent-soft: var(--dh-color-surface-elevated, #232938);
+  --success: var(--dh-color-success, #4cd39a);
+  --warning: var(--dh-color-warning, #f2c65a);
+  --danger: var(--dh-color-danger, #f26d6d);
+  --accent-secondary: var(--dh-color-accent-secondary, #9dc531);
+  --accent-blue: var(--dh-color-accent-blue, #4d86ff);
+  --radius-sm: var(--dh-radius-sm, 6px);
+  --radius-md: var(--dh-radius-md, 10px);
+  --radius-lg: var(--dh-radius-lg, 14px);
+  --radius-pill: var(--dh-radius-pill, 999px);
+  --space-0: var(--dh-space-0, 4px);
+  --space-1: var(--dh-space-1, 8px);
+  --space-2: var(--dh-space-2, 12px);
+  --space-3: var(--dh-space-3, 16px);
+  --space-4: var(--dh-space-4, 20px);
+  --space-5: var(--dh-space-5, 24px);
+  --shadow-subtle: var(--dh-shadow-subtle, 0 4px 12px rgba(0, 0, 0, 0.2));
+  --font-sans: var(--dh-font-family-sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif);
+  --font-display: var(--dh-font-family-display, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif);
+  --type-xs: var(--dh-type-xs, 11px);
+  --type-sm: var(--dh-type-sm, 12px);
+  --type-md: var(--dh-type-md, 14px);
+  --type-lg: var(--dh-type-lg, 16px);
+  --type-xl: var(--dh-type-xl, 22px);
+  --type-display: var(--dh-type-display, 32px);
+  --weight-medium: var(--dh-weight-medium, 500);
+  --weight-semibold: var(--dh-weight-semibold, 600);
+  --weight-bold: var(--dh-weight-bold, 700);
+  --bg-glow: color-mix(in srgb, white 10%, transparent);
+  --bg-glare-white: color-mix(in srgb, white 34%, transparent);
+  --glass-surface: color-mix(in srgb, var(--surface) 90%, white 10%);
+  --line-soft: color-mix(in srgb, var(--line) 74%, white 26%);
 }
 
 * {
@@ -31,9 +50,53 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+  min-height: 100%;
   color: var(--ink);
   font-family: var(--font-sans);
+}
+
+body {
+  background:
+    radial-gradient(1200px 520px at -8% -10%, var(--bg-glow), transparent 70%),
+    radial-gradient(980px 420px at 96% 2%, color-mix(in srgb, white 12%, transparent), transparent 74%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 94%, white 6%), var(--bg));
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--line-soft) 75%, transparent) 1px, transparent 1.5px),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 102px,
+      color-mix(in srgb, var(--line-soft) 65%, transparent) 102px 103px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 102px,
+      color-mix(in srgb, var(--line-soft) 65%, transparent) 102px 103px
+    );
+  background-size: 30px 30px, auto, auto;
+  opacity: 0.18;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -18% -12% auto auto;
+  width: min(60vw, 860px);
+  height: min(60vw, 860px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle, color-mix(in srgb, white 16%, transparent), transparent 70%);
+  filter: blur(24px);
+  opacity: 0.24;
 }
 
 a {
@@ -45,14 +108,44 @@ main {
   max-width: 1180px;
   margin: 0 auto;
   padding: var(--space-5) var(--space-3) var(--space-6);
+  position: relative;
+  z-index: 1;
 }
 
 .card {
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: linear-gradient(165deg, var(--glass-surface), color-mix(in srgb, var(--surface) 95%, var(--accent-soft) 5%));
+  border: 1px solid var(--line-soft);
   border-radius: var(--radius-md);
   padding: var(--space-3);
-  box-shadow: var(--shadow-subtle);
+  box-shadow:
+    var(--shadow-subtle),
+    0 12px 28px color-mix(in srgb, black 28%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 44%, transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, color-mix(in srgb, white 16%, transparent), transparent 26%),
+    radial-gradient(480px 120px at 18% -8%, var(--bg-glare-white), transparent 66%);
+  opacity: 0.42;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: auto -12% -70% auto;
+  width: 56%;
+  height: 82%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, white 12%, transparent), transparent 72%);
+  opacity: 0.16;
+  pointer-events: none;
 }
 
 .stack {
@@ -80,12 +173,12 @@ main {
 .pill {
   display: inline-block;
   padding: 0.2rem 0.55rem;
-  border-radius: var(--dh-radius-pill);
+  border-radius: var(--radius-pill);
   border: 1px solid var(--line);
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: var(--dh-type-sm);
-  font-weight: var(--dh-weight-semibold);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-semibold);
 }
 
 .link-accent {
@@ -114,10 +207,10 @@ button {
   border: 1px solid var(--accent);
   border-radius: var(--radius-sm);
   background: var(--accent);
-  color: var(--dh-color-surface);
+  color: var(--surface);
   padding: 0.45rem 0.75rem;
   cursor: pointer;
-  font-weight: var(--dh-weight-semibold);
+  font-weight: var(--weight-semibold);
 }
 
 button[disabled] {
@@ -128,7 +221,7 @@ button[disabled] {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--dh-type-md);
+  font-size: var(--type-md);
 }
 
 th,
@@ -141,15 +234,15 @@ td {
 
 th {
   background: var(--surface-alt);
-  font-weight: var(--dh-weight-semibold);
-  font-size: var(--dh-type-sm);
+  font-weight: var(--weight-semibold);
+  font-size: var(--type-sm);
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
 
 .meta {
   color: var(--muted);
-  font-size: var(--dh-type-md);
+  font-size: var(--type-md);
 }
 
 h1,
@@ -168,32 +261,32 @@ details summary {
 .status {
   display: inline-block;
   padding: 0.2rem 0.55rem;
-  border-radius: var(--dh-radius-pill);
-  font-size: var(--dh-type-sm);
-  font-weight: var(--dh-weight-semibold);
+  border-radius: var(--radius-pill);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-semibold);
   text-transform: uppercase;
   border: 1px solid var(--line);
   color: var(--muted);
 }
 
 .status-success {
-  background: color-mix(in srgb, var(--dh-color-success) 18%, var(--surface) 82%);
-  color: var(--dh-color-success);
+  background: color-mix(in srgb, var(--success) 18%, var(--surface) 82%);
+  color: var(--success);
 }
 
 .status-running {
-  background: color-mix(in srgb, var(--dh-color-accent-secondary, var(--accent)) 18%, var(--surface) 82%);
-  color: var(--dh-color-accent-secondary, var(--accent));
+  background: color-mix(in srgb, var(--accent-secondary) 18%, var(--surface) 82%);
+  color: var(--accent-secondary);
 }
 
 .status-warn {
-  background: color-mix(in srgb, var(--dh-color-warning) 18%, var(--surface) 82%);
-  color: var(--dh-color-warning);
+  background: color-mix(in srgb, var(--warning) 18%, var(--surface) 82%);
+  color: var(--warning);
 }
 
 .status-error {
-  background: color-mix(in srgb, var(--dh-color-danger) 18%, var(--surface) 82%);
-  color: var(--dh-color-danger);
+  background: color-mix(in srgb, var(--danger) 18%, var(--surface) 82%);
+  color: var(--danger);
 }
 
 .callout {
@@ -201,11 +294,11 @@ details summary {
   border-radius: var(--radius-sm);
   padding: var(--space-2);
   background: var(--surface-alt);
-  font-size: var(--dh-type-md);
+  font-size: var(--type-md);
 }
 
 .callout-warn {
-  border-color: color-mix(in srgb, var(--dh-color-warning) 50%, var(--line) 50%);
+  border-color: color-mix(in srgb, var(--warning) 50%, var(--line) 50%);
 }
 
 .callout ul {
@@ -235,13 +328,13 @@ details summary {
 }
 
 .ops-sidebar-title {
-  font-size: var(--dh-type-lg);
+  font-size: var(--type-lg);
 }
 
 .ops-sidebar-text {
   margin: 0;
-  font-size: var(--dh-type-md);
-  font-weight: var(--dh-weight-medium);
+  font-size: var(--type-md);
+  font-weight: var(--weight-medium);
 }
 
 .ops-nav-group {
@@ -259,13 +352,13 @@ details summary {
   padding: 0.45rem 0.55rem;
   border: 1px solid transparent;
   color: var(--muted);
-  font-size: var(--dh-type-md);
+  font-size: var(--type-md);
 }
 
 .ops-nav.active {
   color: var(--dh-color-text-primary);
-  border-color: var(--line);
-  background: var(--surface-alt);
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--line-soft) 52%);
+  background: color-mix(in srgb, var(--accent-soft) 28%, var(--surface-alt) 72%);
 }
 
 .ops-main {
@@ -279,7 +372,33 @@ details summary {
 }
 
 .kpi-card h2 {
-  font-size: var(--dh-type-display);
+  font-size: var(--type-display);
+}
+
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -18% -48% auto;
+  width: 66%;
+  height: 86%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent), transparent 74%);
+  opacity: 0.26;
+  pointer-events: none;
+}
+
+.kpi-card-accent {
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--line-soft) 52%);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent-soft) 38%, var(--surface) 62%),
+    color-mix(in srgb, var(--surface) 92%, var(--accent-soft) 8%)
+  );
 }
 
 .ops-analysis-grid {
@@ -293,21 +412,21 @@ details summary {
   grid-template-columns: 90px minmax(0, 1fr) 44px;
   align-items: center;
   gap: var(--space-1);
-  font-size: var(--dh-type-sm);
+  font-size: var(--type-sm);
 }
 
 .bar-track {
   height: 10px;
-  border-radius: var(--dh-radius-pill);
-  background: var(--surface-alt);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--surface-alt) 86%, white 14%);
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-soft);
 }
 
 .bar-fill {
   height: 100%;
   width: 0%;
-  background: var(--dh-color-accent-blue, var(--accent));
+  background: var(--accent-blue);
 }
 
 .bar-fill.accent {
@@ -315,11 +434,11 @@ details summary {
 }
 
 .bar-fill.success {
-  background: var(--dh-color-success);
+  background: var(--success);
 }
 
 .bar-fill.muted {
-  background: var(--dh-color-text-tertiary);
+  background: color-mix(in srgb, var(--muted) 70%, var(--ink) 30%);
 }
 
 .rank-list {
@@ -336,14 +455,60 @@ details summary {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: var(--space-1);
   align-items: center;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-soft);
   border-radius: var(--radius-sm);
   padding: 0.55rem 0.65rem;
+  background: color-mix(in srgb, var(--surface-alt) 65%, var(--surface) 35%);
+}
+
+.rank-row:hover {
+  border-color: color-mix(in srgb, var(--accent) 34%, var(--line-soft) 66%);
+}
+
+.pipeline-stages {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.pipeline-stage {
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface-alt) 60%, var(--surface) 40%);
+  padding: var(--space-2);
+  position: relative;
+}
+
+.pipeline-stage-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.pipeline-stage h3 {
+  font-size: var(--dh-type-md);
+}
+
+.pipeline-arrow {
+  position: absolute;
+  right: calc(var(--space-2) * -0.75);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-weight: var(--dh-weight-bold);
+}
+
+.workflow-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
 @media (max-width: 860px) {
   table {
-    font-size: var(--dh-type-sm);
+    font-size: var(--type-sm);
   }
 
   th,
@@ -365,6 +530,14 @@ details summary {
 
   .ops-analysis-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pipeline-stages {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-arrow {
+    display: none;
   }
 }
 

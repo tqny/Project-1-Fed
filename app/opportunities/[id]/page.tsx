@@ -1,167 +1,165 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { activeProductProfile } from "@/config/productProfile";
+import { enterpriseICPProfile } from "@/config/icpProfile";
 import { prisma } from "@/lib/db";
-import { parseBrief, parseNaics, parseScoreBreakdown } from "@/lib/parse";
+import { parseLeadRationale, parseStringMap } from "@/lib/parse";
 
-type OpportunityDetailProps = {
+type LeadDetailProps = {
   params: Promise<{ id: string }>;
 };
 
-function formatDate(value: Date | null): string {
-  return value ? value.toISOString().slice(0, 10) : "N/A";
+function formatDateTime(value: Date): string {
+  return value.toISOString().replace("T", " ").slice(0, 16) + "Z";
 }
 
-export default async function OpportunityDetailPage({ params }: OpportunityDetailProps) {
+function mapGradeToClass(grade: string): string {
+  if (grade === "A") return "status status-success";
+  if (grade === "B" || grade === "C") return "status status-running";
+  if (grade === "D") return "status status-warn";
+  return "status status-error";
+}
+
+export default async function LeadDetailPage({ params }: LeadDetailProps) {
   const { id } = await params;
 
-  const opp = await prisma.opportunity.findUnique({
+  const lead = await prisma.lead.findUnique({
     where: { id }
   });
 
-  if (!opp) {
+  if (!lead) {
     notFound();
   }
 
-  const naics = parseNaics(opp.naics);
-  const breakdown = parseScoreBreakdown(opp.scoreBreakdown);
-  const brief = parseBrief(opp.brief);
+  const rationale = parseLeadRationale(lead.rationale);
+  const provenance = parseStringMap(lead.fieldProvenance);
 
   return (
     <div className="stack">
       <Link href="/opportunities" className="link-accent">
-        ← Back to pipeline
+        ← Back to lead intelligence dashboard
       </Link>
 
       <section className="card stack">
         <div className="row">
-          <span className="badge">Active Product Profile</span>
-          <strong>{activeProductProfile.name}</strong>
+          <span className="badge">Active ICP Profile</span>
+          <strong>{enterpriseICPProfile.profileName}</strong>
         </div>
-        <p className="meta">{activeProductProfile.description}</p>
+        <p className="meta">{enterpriseICPProfile.pretendOffering}</p>
       </section>
 
       <section className="card stack">
-        <h1>{opp.title}</h1>
-        <p className="meta">{opp.agency}</p>
+        <h1>{lead.orgName}</h1>
+        <p className="meta">
+          {lead.agencyName} • {lead.segment}
+        </p>
         <div className="row">
-          <span className="badge">Score {opp.scoreTotal.toFixed(1)}</span>
-          <span className="badge">Posted {formatDate(opp.postedDate)}</span>
-          <span className="badge">Due {formatDate(opp.dueDate)}</span>
+          <span className={mapGradeToClass(lead.icpGrade)}>Grade {lead.icpGrade}</span>
+          <span className="badge">ICP Score {lead.icpScore.toFixed(1)}</span>
+          <span className="badge">{lead.fitBand}</span>
+          <span className="badge">{lead.considerable ? "Considerable" : "Outside consider range"}</span>
         </div>
+        <p className="meta">Generated: {formatDateTime(lead.generatedAt)}</p>
         <p>
-          <strong>Source:</strong>{" "}
-          <a href={opp.url} target="_blank" rel="noreferrer" className="link-accent">
-            {opp.url}
-          </a>
+          <strong>Website:</strong>{" "}
+          {lead.website ? (
+            <a href={lead.website} target="_blank" rel="noreferrer" className="link-accent">
+              {lead.website}
+            </a>
+          ) : (
+            "N/A"
+          )}
         </p>
         <p>
-          <strong>Set-aside:</strong> {opp.setAside ?? "N/A"}
+          <strong>Phone:</strong> {lead.phone ?? "N/A"}
         </p>
         <p>
-          <strong>NAICS:</strong> {naics.length > 0 ? naics.join(", ") : "N/A"}
+          <strong>Headcount proxy:</strong> {lead.headcount.toLocaleString()}
         </p>
         <p>
-          <strong>Place of performance:</strong> {opp.placeOfPerformance ?? "N/A"}
+          <strong>Simulated annual budget:</strong> ${lead.annualBudgetM.toFixed(1)}M
+        </p>
+        <p>
+          <strong>Simulated related spend:</strong> ${lead.relatedSpendM.toFixed(1)}M
+        </p>
+        <p>
+          <strong>Governance role signal:</strong> {lead.governanceRolePresent ? lead.governanceRoleTitle : "Not present"}
         </p>
       </section>
 
       <section className="card stack">
-        <h2>Score Breakdown</h2>
-        <p className="meta">Deterministic, explainable model. No opaque AI ranker.</p>
+        <h2>Deterministic ICP Scoring Rationale</h2>
+        <p className="meta">Explicit weighted scoring, designed for auditability and repeatability.</p>
         <div className="row">
-          <span className="badge">Fit {breakdown.fit.toFixed(1)}</span>
-          <span className="badge">Timing {breakdown.timing.toFixed(1)}</span>
-          <span className="badge">Signal {breakdown.signal.toFixed(1)}</span>
-          <span className="badge">Complexity {breakdown.complexity.toFixed(1)}</span>
+          <span className="badge">Procurement readiness {lead.procurementReadiness}</span>
+          <span className="badge">Compliance urgency {lead.complianceUrgency}</span>
+          <span className="badge">Regulatory complexity {lead.regulatoryComplexity}</span>
+          <span className="badge">Cyber pressure {lead.cyberPressure}</span>
         </div>
 
-        <div className="stack">
-          <div>
-            <strong>Fit reasons</strong>
-            <ul>
-              {breakdown.details.fit.map((reason) => (
-                <li key={reason}>{reason}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <strong>Timing reasons</strong>
-            <ul>
-              {breakdown.details.timing.map((reason) => (
-                <li key={reason}>{reason}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <strong>Signal reasons</strong>
-            <ul>
-              {breakdown.details.signal.map((reason) => (
-                <li key={reason}>{reason}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <strong>Complexity reasons</strong>
-            <ul>
-              {breakdown.details.complexity.map((reason) => (
-                <li key={reason}>{reason}</li>
-              ))}
-            </ul>
-          </div>
+        <div className="ops-analysis-grid">
+          <article className="callout stack">
+            <h3>Component Scores</h3>
+            <p className="meta">Scale & budget: {rationale?.componentScores.scaleAndBudget ?? "N/A"}</p>
+            <p className="meta">Spend propensity: {rationale?.componentScores.spendPropensity ?? "N/A"}</p>
+            <p className="meta">
+              Organizational readiness: {rationale?.componentScores.organizationalReadiness ?? "N/A"}
+            </p>
+            <p className="meta">Urgency pressure: {rationale?.componentScores.urgencyPressure ?? "N/A"}</p>
+          </article>
+          <article className="callout stack">
+            <h3>Decision Trail</h3>
+            {rationale?.reasons?.length ? (
+              <ul>
+                {rationale.reasons.map((reason) => (
+                  <li key={reason}>{reason}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="meta">No rationale available.</p>
+            )}
+          </article>
         </div>
       </section>
 
       <section className="card stack">
-        <h2>Opportunity Brief</h2>
-        {brief ? (
-          <>
-            <p>{brief.summary}</p>
-            <div>
-              <strong>Why It Matters</strong>
-              <ul>
-                {brief.whyItMatters.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <strong>Suggested Outreach Angle</strong>
-              <p>{brief.suggestedOutreachAngle}</p>
-            </div>
-            <div>
-              <strong>Discovery Questions</strong>
-              <ul>
-                {brief.discoveryQuestions.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <strong>Risks / Unknowns</strong>
-              <ul>
-                {brief.risksUnknowns.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <strong>Next Step</strong>
-              <p>{brief.nextStep}</p>
-            </div>
-          </>
-        ) : (
-          <p className="meta">Brief unavailable.</p>
-        )}
+        <h2>Agent Handoff Status</h2>
+        <div className="row">
+          <span className="badge">Status: {lead.status}</span>
+          <span className="badge">Priority rank: {lead.priorityRank ?? "unranked"}</span>
+        </div>
+        <p className="meta">
+          `Run Sorting Agent` writes queue/priority for all considerable leads. Non-considerable leads are marked
+          discarded.
+        </p>
       </section>
 
       <section className="card stack">
-        <h2>Raw Description</h2>
+        <h2>Field Provenance</h2>
         <details>
-          <summary>Show full solicitation description</summary>
-          <pre className="preformatted">{opp.description ?? "No description available."}</pre>
+          <summary>Show source provenance for each field</summary>
+          {provenance ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Provenance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(provenance).map(([field, source]) => (
+                  <tr key={field}>
+                    <td>{field}</td>
+                    <td>{source}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p className="meta">No provenance metadata available.</p>
+          )}
         </details>
+        <p className="meta">{enterpriseICPProfile.syntheticDisclosure}</p>
       </section>
     </div>
   );
